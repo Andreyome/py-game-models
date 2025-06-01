@@ -15,7 +15,7 @@ def main() -> None:
             description=race_data.get("description", "")
         )
 
-        for skill in race_data["skills"]:
+        for skill in race_data.get('skills', []):
             Skill.objects.get_or_create(
                 name=skill["name"],
                 bonus=skill["bonus"],
@@ -26,7 +26,7 @@ def main() -> None:
         if guild_data:
             guild, boolean = Guild.objects.get_or_create(
                 name=guild_data["name"],
-                description=guild_data["description"]
+                description=guild_data.get("description", "")
             )
         else:
             guild = None
